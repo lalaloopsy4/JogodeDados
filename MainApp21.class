@@ -1,0 +1,21 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+
+class MainApp$2$1 implements ActionListener {
+   MainApp$2$1(final MainApp$2 var1) {
+      this.this$1 = var1;
+   }
+
+   public void actionPerformed(ActionEvent var1) {
+      int[] var2 = this.this$1.this$0.jogo.lancarDados();
+      int var3 = var2[0] + var2[1];
+      this.this$1.this$0.labelResultado.setText("Soma dos Dados: " + var3);
+      String var4 = this.this$1.this$0.jogo.verificarVencedor(var3);
+      this.this$1.this$0.dbHandler.salvarResultado(var4);
+      JOptionPane.showMessageDialog((Component)null, var4);
+      this.this$1.this$0.dbHandler.exibirRanking(this.this$1.this$0.jogo.getListaJogadores());
+   }
+}
