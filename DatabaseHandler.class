@@ -1,0 +1,49 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Iterator;
+import java.util.List;
+
+public class DatabaseHandler {
+   private static final String ARQUIVO_CSV = "resultados.csv";
+
+   public DatabaseHandler() {
+   }
+
+   public void salvarResultado(String var1) {
+      try {
+         FileWriter var2 = new FileWriter("resultados.csv", true);
+
+         try {
+            var2.append(var1).append("\n");
+         } catch (Throwable var6) {
+            try {
+               var2.close();
+            } catch (Throwable var5) {
+               var6.addSuppressed(var5);
+            }
+
+            throw var6;
+         }
+
+         var2.close();
+      } catch (IOException var7) {
+         var7.printStackTrace();
+      }
+
+   }
+
+   public void exibirRanking(List<Jogador> var1) {
+      System.out.println("Ranking dos jogadores:");
+      Iterator var2 = var1.iterator();
+
+      while(var2.hasNext()) {
+         Jogador var3 = (Jogador)var2.next();
+         PrintStream var10000 = System.out;
+         String var10001 = var3.getNomeJogador();
+         var10000.println(var10001 + " apostou em " + var3.getValorApostado());
+      }
+
+   }
+}
