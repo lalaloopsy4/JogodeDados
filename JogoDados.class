@@ -1,0 +1,58 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+
+public class JogoDados {
+   private List<Jogador> listaJogadores = new ArrayList();
+   private Random random = new Random();
+
+   public JogoDados() {
+   }
+
+   public void adicionarJogador(String var1, int var2) throws Exception {
+      if (this.listaJogadores.size() >= 11) {
+         throw new Exception("N\u00famero m\u00e1ximo de jogadores \u00e9 11");
+      } else if (var2 >= 2 && var2 <= 12) {
+         Iterator var3 = this.listaJogadores.iterator();
+
+         Jogador var4;
+         do {
+            if (!var3.hasNext()) {
+               this.listaJogadores.add(new Jogador(var1, var2));
+               return;
+            }
+
+            var4 = (Jogador)var3.next();
+         } while(var4.getValorApostado() != var2);
+
+         throw new Exception("Valor de aposta j\u00e1 escolhido");
+      } else {
+         throw new Exception("Aposta deve estar entre 2 e 12");
+      }
+   }
+
+   public int[] lancarDados() {
+      return new int[]{this.random.nextInt(6) + 1, this.random.nextInt(6) + 1};
+   }
+
+   public String verificarVencedor(int var1) {
+      Iterator var2 = this.listaJogadores.iterator();
+
+      Jogador var3;
+      do {
+         if (!var2.hasNext()) {
+            return "Nenhum jogador acertou. O computador venceu!";
+         }
+
+         var3 = (Jogador)var2.next();
+      } while(var3.getValorApostado() != var1);
+
+      return "Ganhador: " + var3.getNomeJogador();
+   }
+
+   public List<Jogador> getListaJogadores() {
+      return this.listaJogadores;
+   }
+}
