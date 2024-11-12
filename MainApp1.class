@@ -1,0 +1,25 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+
+class MainApp$1 implements ActionListener {
+   MainApp$1(final MainApp var1) {
+      this.this$0 = var1;
+   }
+
+   public void actionPerformed(ActionEvent var1) {
+      try {
+         String var2 = this.this$0.campoNome.getText();
+         int var3 = Integer.parseInt(this.this$0.campoAposta.getText());
+         this.this$0.jogo.adicionarJogador(var2, var3);
+         this.this$0.areaJogadores.append(var2 + " apostou em " + var3 + "\n");
+         this.this$0.campoNome.setText("");
+         this.this$0.campoAposta.setText("");
+      } catch (Exception var4) {
+         JOptionPane.showMessageDialog((Component)null, var4.getMessage());
+      }
+
+   }
+}
