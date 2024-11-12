@@ -1,0 +1,59 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+import java.awt.FlowLayout;
+import java.sql.SQLException;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+public class MainApp extends JFrame {
+   private JogoDados jogo = new JogoDados();
+   private DatabaseHandler dbHandler = new DatabaseHandler();
+   private JTextArea areaJogadores;
+   private JTextField campoNome;
+   private JTextField campoAposta;
+   private JLabel labelResultado;
+   private JLabel gifDados;
+
+   public MainApp() throws SQLException {
+      this.setTitle("Jogo de Dados Personalizado");
+      this.setSize(500, 500);
+      this.setDefaultCloseOperation(3);
+      this.setLayout(new FlowLayout());
+      this.campoNome = new JTextField(10);
+      this.campoAposta = new JTextField(5);
+      JButton var1 = new JButton("Adicionar Jogador");
+      this.areaJogadores = new JTextArea(10, 30);
+      this.areaJogadores.setEditable(false);
+      JButton var2 = new JButton("Lan\u00e7ar Dados");
+      this.labelResultado = new JLabel("Resultado:");
+      this.gifDados = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("resources/dados.gif")));
+      this.add(new JLabel("Nome:"));
+      this.add(this.campoNome);
+      this.add(new JLabel("Aposta:"));
+      this.add(this.campoAposta);
+      this.add(var1);
+      this.add(new JScrollPane(this.areaJogadores));
+      this.add(var2);
+      this.add(this.labelResultado);
+      this.add(this.gifDados);
+      var1.addActionListener(new MainApp$1(this));
+      var2.addActionListener(new MainApp$2(this));
+   }
+
+   public static void main(String[] var0) {
+      SwingUtilities.invokeLater(() -> {
+         try {
+            MainApp var0 = new MainApp();
+            var0.setVisible(true);
+         } catch (SQLException var1) {
+            var1.printStackTrace();
+         }
+
+      });
+   }
+}
